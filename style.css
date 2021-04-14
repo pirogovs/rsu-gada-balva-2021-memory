@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: #B68D40;
+  min-height: 100%;
+  font-family: "Arial", sans-serif;
+}
+
+.header {
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #122620;
+  padding: 1rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.header .logo {
+  background-image: url(./media/logo.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.header .text {
+  color: #B68D40;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.wrap {
+  position: relative;
+  height: 100%;
+  min-height: 500px;
+  padding-bottom: 20px;
+}
+
+.game {
+  transform-style: preserve-3d;
+  perspective: 500px;
+  min-height: 100%;
+  height: 100%;
+}
+
+.game img {
+  border-radius: 0.5rem;
+}
+
+@-webkit-keyframes matchAnim {
+  0% {
+    background: #bcffcc;
+  }
+  100% {
+    background: white;
+  }
+}
+
+@keyframes matchAnim {
+  0% {
+    background: #bcffcc;
+  }
+  100% {
+    background: white;
+  }
+}
+.card {
+  float: left;
+  width: 16.66666%;
+  height: 25%;
+  padding: 5px;
+  text-align: center;
+  display: block;
+  perspective: 500px;
+  position: relative;
+  cursor: pointer;
+  z-index: 50;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+@media (max-width: 800px) {
+  .card {
+    width: 25%;
+    height: 16.666%;
+  }
+}
+.card .inside {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform-style: preserve-3d;
+  transition: 0.4s ease-in-out;
+  background: transparent;
+}
+.card .inside.picked, .card .inside.matched {
+  transform: rotateY(180deg);
+}
+.card .inside.matched {
+  -webkit-animation: 1s matchAnim ease-in-out;
+          animation: 1s matchAnim ease-in-out;
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+}
+.card .front, .card .back {
+  border: 1px solid #B68D40;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card .front img, .card .back img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  max-height: 100%;
+}
+.card .front {
+  transform: rotateY(-180deg);
+}
+
+.card .back {
+  transform: rotateX(0);
+}
+
+.modal-overlay {
+  display: none;
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal {
+  height: 100vh;
+  width: 100vw;
+  overflow: scroll;
+}
